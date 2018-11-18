@@ -11,9 +11,9 @@ LABEL robertcsmith.php-fpm.namespace="robertcsmith/" \
     robertcsmith.php-fpm.maintainer="Robert C Smith <robertchristophersmith@gmail.com>" \
     robertcsmith.php-fpm.usage="README.md" \
     robertcsmith.php-fpm.description="\
-        This base php-fpm image can, through bind mounts and environmental variables, provide a full \
-        application image when given source code and a simple .conf file. Couple this with a database, \
-        a cache perhaps and a web server and you should be good to go."
+This base php-fpm image can, through bind mounts and environmental variables, provide a full \
+application image when given source code and a simple .conf file. Couple this with a database, \
+a cache perhaps and a web server and you should be good to go."
 
 ENV	PHP_VERSION="7.2.11" \
     PHP_INI_DIR="/usr/local/etc/php" \

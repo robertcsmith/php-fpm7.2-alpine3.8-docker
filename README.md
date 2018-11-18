@@ -14,7 +14,7 @@ Here is more info taken from a child Dockerfile: \
 \
 "This image provides the tools needed to properly install the source code for http://wufgear.com and/or make modifications to it for debugging and/or perform maintenance functions and/or upgrades through an interactive BASH shell. The container this image builds operates on a separate development source code, however, the connection to the database and cache containers are those used in production and the container is meant to be built with, and ran with only the tools needed and ONLY while the production container is stopped (aka down for maints) by the developer and the container instance should disconnect all volumes and binds, commit and push source code changes to git and GitHub (as well as image chaanges to other subtrees (aka other container images) before being destroyed. To make the changes within production, manually perform a git pull on the production source code. Any changes made to other subtrees should also be updated but assuming the changes were to the images The containers will need to be removed and recreated. A better document for this proceedure can be found in the README.md found in the same directory of this image as well as the directory of the Compose file which is responsible for building this app. See below for the needed bind mounts and volumes which must be created and paired with the container this image builds for proper functionality: \
 \
-    - named volume:  unix-sockets-wufgear-nginx:/var/run/php/wufgear \
+    - named volume:  unix-sockets-nginx-wufgear:/var/run/php/wufgear \
     - bind-mount:    /app/src/wufgear:/var/www/wufgear \
     - bind-mount:    /app/binds/wufgear/usr-local-etc-php-fpm.d:/usr/local/etc/php-fpm.d \
 \
