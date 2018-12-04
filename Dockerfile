@@ -10,20 +10,17 @@ LABEL robertcsmith.php-fpm.namespace="robertcsmith/" \
     robertcsmith.php-fpm.vcs-url="https://github.com/robertcsmith/php-fpm7.2-alpine3.8-docker" \
     robertcsmith.php-fpm.maintainer="Robert C Smith <robertchristophersmith@gmail.com>" \
     robertcsmith.php-fpm.usage="README.md" \
-    robertcsmith.php-fpm.description="\
-This base php-fpm image can, through bind mounts and environmental variables, provide a full \
-application image when given source code and a simple .conf file. Couple this with a database, \
-a cache perhaps and a web server and you should be good to go."
+    robertcsmith.php-fpm.description="This base php-fpm image can, through bind mounts and environmental variables, provide a full application image when given source code and a simple .conf file. Couple this with a database, a cache perhaps and a web server and you should be good to go."
 
 ENV	PHP_VERSION="7.2.11" \
     PHP_INI_DIR="/usr/local/etc/php" \
     # override this local variable and use the value of '-production' when deployment to production
-    PHP_INI_VERSION="development" \
+    PHP_INI_VERSION="-development" \
     PHP_SHA256="180c63a9647c0a50d438b6bd5c7a8e7a11bceee8ad613a59d3ef15151fc158d4" \
     GPG_KEYS="1729F83938DA44E27BA0F4D3DBDB397470D12172 B1B44D8F021E4E2D6021E995DC9FF8D3EE5AF27F" \
     PHP_CFLAGS="-fstack-protector-strong -fpic -fpie -O2" \
     PHP_LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie" \
-    PHP_EXTRA_CONFIGURE_ARGS="--enable-fpm --with-fpm-user=app --with-fpm-group=www-data --disable-cgi" \
+    PHP_EXTRA_CONFIGURE_ARGS=" --enable-fpm --with-fpm-user=app --with-fpm-group=www-data --disable-cgi" \
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c"
 ENV PHP_URL="http://us2.php.net/get/php-${PHP_VERSION}.tar.gz/from/this/mirror" \
     PHP_ASC_URL="http://us2.php.net/get/php-${PHP_VERSION}.tar.gz.asc/from/this/mirror" \
@@ -33,10 +30,10 @@ ENV PHP_URL="http://us2.php.net/get/php-${PHP_VERSION}.tar.gz/from/this/mirror" 
 # 82 is the standard uid/gid for "www-data" in Alpine's PHP and
 # 101 seems to be the standard uid/gid for "nginx" in Alpine's nginx flavor.
 RUN set -x; \
-    addgroup -S -g 82 www-data && addgroup -S -g 101 nginx; \
+    addgroup -S -g 82 www-data && addgroup -S -g 101 nginx;
     addgroup app www-data && addgroup app nginx;
 
-COPY docker-php-source docker-php-ext-* docker-php-entrypoint /usr/local/bin/
+COPY --chown=app:root files/docker-php-source files/docker-php-ext-* files/docker-php-entrypoint /usr/local/bin/
 
 RUN set -xe; \
     # persistent / runtime deps

@@ -1429,7 +1429,7 @@ session.sid_bits_per_character = 5
 ; Development Value: On
 ; Production Value: On
 ; http://php.net/session.upload-progress.enabled
-;session.upload_progress.enabled = On
+session.upload_progress.enabled = On
 
 ; Cleanup the progress information as soon as all POST data has been read
 ; (i.e. upload completed).
@@ -1437,14 +1437,14 @@ session.sid_bits_per_character = 5
 ; Development Value: On
 ; Production Value: On
 ; http://php.net/session.upload-progress.cleanup
-;session.upload_progress.cleanup = On
+session.upload_progress.cleanup = On
 
 ; A prefix used for the upload progress key in $_SESSION
 ; Default Value: "upload_progress_"
 ; Development Value: "upload_progress_"
 ; Production Value: "upload_progress_"
 ; http://php.net/session.upload-progress.prefix
-;session.upload_progress.prefix = "upload_progress_"
+session.upload_progress.prefix = "upload_progress_"
 
 ; The index name (concatenated with the prefix) in $_SESSION
 ; containing the upload progress information
@@ -1460,14 +1460,14 @@ session.sid_bits_per_character = 5
 ; Development Value: "1%"
 ; Production Value: "1%"
 ; http://php.net/session.upload-progress.freq
-;session.upload_progress.freq =  "1%"
+session.upload_progress.freq = "10%"
 
 ; The minimum delay between updates, in seconds
 ; Default Value: 1
 ; Development Value: 1
 ; Production Value: 1
 ; http://php.net/session.upload-progress.min-freq
-;session.upload_progress.min_freq = "1"
+session.upload_progress.min_freq = "2"
 
 ; Only write session data when session data is changed. Enabled by default.
 ; http://php.net/session.lazy-write
